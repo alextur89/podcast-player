@@ -31,7 +31,7 @@ ApplicationWindow {
         model: feeds
         spacing: 3
         delegate: Rectangle {
-            width: 100
+            width: parent.width
             height: 100
 
             property bool selected: ListView.isCurrentItem
@@ -40,6 +40,8 @@ ApplicationWindow {
             Image {
                 anchors.centerIn: parent
                 source: image
+                height: 100
+                width: 100
             }
 
             Text {
@@ -53,21 +55,33 @@ ApplicationWindow {
 
                 font { pixelSize: 18; bold: true }
                 text: name
-                color: selected ? "#ffffff" : "#ebebdd"
+                color: selected ? "black" : "#ebebdd"
                 scale: selected ? 1.15 : 1.0
                 Behavior on color { ColorAnimation { duration: 150 } }
                 Behavior on scale { PropertyAnimation { duration: 300 } }
             }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    parent.ListView.view.currentIndex = index
+                    if (mainWindow.currentFeed == feed)
+                        //feedModel.reload()
+                        console.log("reload model feed")
+                    else
+                        mainWindow.currentFeed = feed
+                }
+            }
         }
     }
 
-    /*ScrollBar {
+    ScrollBar {
         id: listScrollBar
         orientation: Qt.Vertical
         height: podcasts.height;
         width: 8
         //scrollArea: podcasts;
         anchors.right: podcasts.right
-    }*/
+    }
 
 }
