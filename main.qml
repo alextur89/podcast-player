@@ -20,6 +20,7 @@ ApplicationWindow {
 
     }*/
 
+    //list of podcasts
     ListView {
         id: podcasts
         property int itemWidth: 150
@@ -32,32 +33,18 @@ ApplicationWindow {
         spacing: 3
         delegate: Rectangle {
             width: parent.width
-            height: 100
+            height: 120
 
             property bool selected: ListView.isCurrentItem
             property real itemSize
 
             Image {
-                anchors.centerIn: parent
+                anchors.left: parent
                 source: image
-                height: 100
-                width: 100
-            }
+                height: 120
+                width: 120
 
-            Text {
-                id: titleText
-
-                anchors {
-                    left: parent.left; leftMargin: 20
-                    right: parent.right; rightMargin: 20
-                    top: parent.top; topMargin: 20
-                }
-
-                font { pixelSize: 18; bold: true }
-                text: name
-                color: selected ? "black" : "#ebebdd"
                 scale: selected ? 1.15 : 1.0
-                Behavior on color { ColorAnimation { duration: 150 } }
                 Behavior on scale { PropertyAnimation { duration: 300 } }
             }
 
@@ -74,7 +61,6 @@ ApplicationWindow {
             }
         }
     }
-
     ScrollBar {
         id: listScrollBar
         orientation: Qt.Vertical
@@ -83,5 +69,7 @@ ApplicationWindow {
         //scrollArea: podcasts;
         anchors.right: podcasts.right
     }
+
+    //list of the podcast's episodes
 
 }
