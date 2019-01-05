@@ -14,11 +14,13 @@ ApplicationWindow {
 
     PodcastFeeds { id: feeds }
 
-    /*XmlListModel {
+    XmlListModel {
         id: feedModel
         source: "http://" + mainWindow.currentFeed
-
-    }*/
+        query: "/rss/channel"
+        XmlRole { name: "title"; query: "title/string()" }
+        XmlRole { name: "description"; query: "fn:replace(description/string(), '\&lt;a href=.*\/a\&gt;', '')" }
+    }
 
     //list of podcasts
     ListView {
@@ -61,15 +63,19 @@ ApplicationWindow {
             }
         }
     }
-    ScrollBar {
-        id: listScrollBar
-        orientation: Qt.Vertical
-        height: podcasts.height;
-        width: 8
-        //scrollArea: podcasts;
-        anchors.right: podcasts.right
-    }
 
     //list of the podcast's episodes
+    ListView {
+        id: list
+
+        anchors.left: podcasts.right
+        anchors.right: parent
+        anchors.top: mainWindow.top
+        anchors.bottom: mainWindow.bottom
+        anchors.leftMargin: 30
+        anchors.rightMargin: 4
+        model: feedModel
+        delegate: EpisodesDelegate{}
+    }
 
 }
