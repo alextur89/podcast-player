@@ -17,7 +17,8 @@ ApplicationWindow {
     XmlListModel {
         id: feedModel
         source: "http://" + mainWindow.currentFeed
-        query: "/rss/channel"
+        query: "/rss/channel/item"
+        namespaceDeclarations: "declare namespace itunes='http://www.itunes.com/dtds/podcast-1.0.dtd';"
         XmlRole { name: "title"; query: "title/string()" }
         XmlRole { name: "description"; query: "fn:replace(description/string(), '\&lt;a href=.*\/a\&gt;', '')" }
     }
@@ -76,6 +77,13 @@ ApplicationWindow {
         anchors.rightMargin: 4
         model: feedModel
         delegate: EpisodesDelegate{}
+    }
+    ScrollBar {
+        contentItem : list
+        width: parent.width - podcasts.itemWidth
+        anchors.right: mainWindow.right
+        anchors.top: mainWindow.top
+        anchors.bottom: mainWindow.bottom
     }
 
 }
