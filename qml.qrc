@@ -7,7 +7,7 @@
         <file>images/busy.png</file>
         <file>EpisodesDelegate.qml</file>
         <file>images/2_po_cene_1.jpg</file>
-        <file>PlayerStatusBar.qml</file>
-        <file>PlayerStatusBarForm.ui.qml</file>
+        <file>images/pause.png</file>
+        <file>images/play.png</file>
     </qresource>
 </RCC>

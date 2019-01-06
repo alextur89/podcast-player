@@ -90,9 +90,9 @@ ApplicationWindow {
     Rectangle{
         id: statusBar
         color: "white"
-        height: 50
+        height: 64
         width: mainWindow.width
-        y: parent.height - 50
+        y: parent.height - 64
 
         DropShadow {
                anchors.fill: statusBar
@@ -103,6 +103,33 @@ ApplicationWindow {
                samples: 17
                color: "#80000000"
                source: statusBar
+        }
+        Rectangle{
+            id: playButton
+            color: "#ff8000"
+            radius: 25
+            height: 64
+            width: 64
+            x:0
+            y:0
+            Image {
+                id: control
+                property bool play: false
+                source: "images/play.png"
+            }
+            MouseArea{
+                anchors.fill: parent
+                onClicked: {
+                    if (!control.play){
+                        control.source = "images/pause.png"
+                    }
+                    else{
+                        control.source = "images/play.png"
+                    }
+                    control.play = !control.play
+                }
+            }
+
         }
     }
 }
