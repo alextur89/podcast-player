@@ -4,10 +4,8 @@ Column {
     id: delegate
     width: delegate.ListView.view.width
 
-    Column {
-        width: parent.width
-        spacing: 10
-
+    Column{
+        id: col
         Text {
             id: titleText
             text: title
@@ -16,7 +14,6 @@ Column {
             font.pixelSize: 16
             font.bold: true
         }
-
         Text {
             id: descriptionText
             text: description
@@ -27,6 +24,4 @@ Column {
             horizontalAlignment: Qt.AlignLeft
         }
     }
-
-
 }

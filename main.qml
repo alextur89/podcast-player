@@ -21,6 +21,7 @@ ApplicationWindow {
         namespaceDeclarations: "declare namespace itunes='http://www.itunes.com/dtds/podcast-1.0.dtd';"
         XmlRole { name: "title"; query: "title/string()" }
         XmlRole { name: "description"; query: "description/string()" }
+        XmlRole { name: "link"; query: "link/string()" }
     }
 
     //list of podcasts
@@ -66,23 +67,21 @@ ApplicationWindow {
 
     //list of the podcast's episodes
     ListView {
-        id: list
-
+        id: episodesList
+        width: parent.width - podcasts.width;
+        height: parent.height
         anchors.left: podcasts.right
-        anchors.right: parent.right
-        anchors.top: mainWindow.top
-        anchors.bottom: mainWindow.bottom
-        anchors.leftMargin: 30
-        anchors.rightMargin: 4
+        highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
+        focus: true
         model: feedModel
         delegate: EpisodesDelegate{}
-    }
-    ScrollBar {
-        contentItem : list
-        width: parent.width - podcasts.itemWidth
-        anchors.right: mainWindow.right
-        anchors.top: mainWindow.top
-        anchors.bottom: mainWindow.bottom
+        spacing: 20
+        ScrollBar {
+            width: parent.width - podcasts.itemWidth
+            anchors.right: mainWindow.right
+            anchors.top: mainWindow.top
+            anchors.bottom: mainWindow.bottom
+        }
     }
 
 }
