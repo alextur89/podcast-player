@@ -20,7 +20,7 @@ ApplicationWindow {
         query: "/rss/channel/item"
         namespaceDeclarations: "declare namespace itunes='http://www.itunes.com/dtds/podcast-1.0.dtd';"
         XmlRole { name: "title"; query: "title/string()" }
-        XmlRole { name: "description"; query: "fn:replace(description/string(), '\&lt;a href=.*\/a\&gt;', '')" }
+        XmlRole { name: "description"; query: "description/string()" }
     }
 
     //list of podcasts
@@ -57,7 +57,6 @@ ApplicationWindow {
                     parent.ListView.view.currentIndex = index
                     if (mainWindow.currentFeed == feed)
                         feedModel.reload()
-                        //console.log("reload model feed")
                     else
                         mainWindow.currentFeed = feed
                 }
