@@ -2,6 +2,7 @@ import QtQuick 2.9
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.4
 import QtQuick.XmlListModel 2.0
+import QtGraphicalEffects 1.12
 
 ApplicationWindow {
     id: mainWindow
@@ -9,6 +10,7 @@ ApplicationWindow {
     width: 800
     height: 480
     title: qsTr("Podcast Player")
+    color: "whitesmoke"
 
     property string currentFeed: feeds.get(0).feed
 
@@ -30,7 +32,7 @@ ApplicationWindow {
         property int itemWidth: 150
 
         width: itemWidth
-        height: parent.height
+        height: parent.height - statusBar.height
         orientation: ListView.Vertical
         anchors.top: parent.top
         model: feeds
@@ -38,6 +40,7 @@ ApplicationWindow {
         delegate: Rectangle {
             width: parent.width
             height: 120
+            color: "whitesmoke"
 
             property bool selected: ListView.isCurrentItem
             property real itemSize
@@ -47,6 +50,7 @@ ApplicationWindow {
                 source: image
                 height: 120
                 width: 120
+
 
                 scale: selected ? 1.15 : 1.0
                 Behavior on scale { PropertyAnimation { duration: 300 } }
@@ -69,9 +73,9 @@ ApplicationWindow {
     ListView {
         id: episodesList
         width: parent.width - podcasts.width;
-        height: parent.height
+        height: parent.height - statusBar.height
         anchors.left: podcasts.right
-        highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
+        highlight: Rectangle { color: "gainsboro"; radius: 5 }
         focus: true
         model: feedModel
         delegate: EpisodesDelegate{}
@@ -83,5 +87,22 @@ ApplicationWindow {
             anchors.bottom: mainWindow.bottom
         }
     }
+    Rectangle{
+        id: statusBar
+        color: "white"
+        height: 50
+        width: mainWindow.width
+        y: parent.height - 50
 
+        DropShadow {
+               anchors.fill: statusBar
+               cached: true
+               horizontalOffset: 0
+               verticalOffset: 0
+               radius: 8.0
+               samples: 17
+               color: "#80000000"
+               source: statusBar
+        }
+    }
 }
