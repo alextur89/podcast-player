@@ -42,7 +42,7 @@ ApplicationWindow {
             property real itemSize
 
             Image {
-                anchors.left: parent
+                anchors.left: parent.left
                 source: image
                 height: 120
                 width: 120
@@ -56,8 +56,8 @@ ApplicationWindow {
                 onClicked: {
                     parent.ListView.view.currentIndex = index
                     if (mainWindow.currentFeed == feed)
-                        //feedModel.reload()
-                        console.log("reload model feed")
+                        feedModel.reload()
+                        //console.log("reload model feed")
                     else
                         mainWindow.currentFeed = feed
                 }
@@ -70,7 +70,7 @@ ApplicationWindow {
         id: list
 
         anchors.left: podcasts.right
-        anchors.right: parent
+        anchors.right: parent.right
         anchors.top: mainWindow.top
         anchors.bottom: mainWindow.bottom
         anchors.leftMargin: 30
