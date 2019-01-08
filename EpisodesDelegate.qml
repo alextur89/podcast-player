@@ -7,6 +7,10 @@ Component{
         width: ListView.view.width
         signal indexChanged()
 
+        function getTitle(){
+            return titleText.text
+        }
+
         Column{
             id: col
             Text {
