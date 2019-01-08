@@ -102,19 +102,9 @@ ApplicationWindow {
         width: mainWindow.width
         y: parent.height - 64
         function setEpisodeName(name){
-            episodeName.text = name
+            episodeName.text = name;
         }
 
-        DropShadow {
-               anchors.fill: statusBar
-               cached: true
-               horizontalOffset: 0
-               verticalOffset: 0
-               radius: 8.0
-               samples: 17
-               color: "#80000000"
-               source: statusBar
-        }
         Row{
             id: row
             Rectangle{
@@ -144,10 +134,18 @@ ApplicationWindow {
                 }
 
             }
-            Text{
-                id: episodeName
-                text: ""
-                anchors.verticalCenter: parent
+            Column{
+                Text{
+                    id: episodeName
+                    text: "Пусто"
+                }
+                Slider{
+                    id: timeSlider
+                    from: 1
+                    value: 0
+                    to: 100
+                    width: statusBar.width - playButton.width
+                }
             }
         }
     }
