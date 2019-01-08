@@ -30,8 +30,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     images/busy.png \
-    Indicator.qml \
     PodcastFeeds.qml \
-    Indicator.qml \
     images/tekst_nedeli.png \
     images/meduza_v_kurse.jpg
