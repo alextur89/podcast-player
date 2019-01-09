@@ -10,6 +10,9 @@ Component{
         function getTitle(){
             return titleText.text
         }
+        function getLink(){
+            return link
+        }
 
         Column{
             id: col

@@ -3,6 +3,7 @@ import QtQuick.Window 2.2
 import QtQuick.Controls 2.4
 import QtQuick.XmlListModel 2.0
 import QtGraphicalEffects 1.12
+import Radio 1.0
 
 ApplicationWindow {
     id: mainWindow
@@ -24,7 +25,7 @@ ApplicationWindow {
         namespaceDeclarations: "declare namespace itunes='http://www.itunes.com/dtds/podcast-1.0.dtd';"
         XmlRole { name: "title"; query: "title/string()" }
         XmlRole { name: "description"; query: "description/string()" }
-        XmlRole { name: "link"; query: "link/string()" }
+        XmlRole { name: "link"; query: "enclosure/@url/string()" }
     }
 
     //list of podcasts
@@ -93,6 +94,7 @@ ApplicationWindow {
         }
         onCurrentIndexChanged: {
             statusBar.setEpisodeName(currentItem.getTitle())
+            player.source = currentItem.getLink()
         }
     }
     Rectangle{
@@ -125,9 +127,11 @@ ApplicationWindow {
                     onClicked: {
                         if (!control.play){
                             control.source = "images/pause.png"
+                            player.play();
                         }
                         else{
                             control.source = "images/play.png"
+                            player.stop();
                         }
                         control.play = !control.play
                     }
@@ -148,5 +152,9 @@ ApplicationWindow {
                 }
             }
         }
+    }
+    Radio{
+        id: player
+        source: "http://213.59.4.27:8000/silver128.mp3"
     }
 }
