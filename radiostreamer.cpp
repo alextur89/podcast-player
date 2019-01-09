@@ -22,6 +22,10 @@ void RadioStreamer::stop(){
     player->stop();
 }
 
+void RadioStreamer::pause(){
+    player->pause();
+}
+
 RadioStreamer::~RadioStreamer()
 {
     player->stop();

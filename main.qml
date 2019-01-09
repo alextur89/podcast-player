@@ -94,7 +94,9 @@ ApplicationWindow {
         }
         onCurrentIndexChanged: {
             statusBar.setEpisodeName(currentItem.getTitle())
+            player.stop()
             player.source = currentItem.getLink()
+
         }
     }
     Rectangle{
@@ -120,20 +122,30 @@ ApplicationWindow {
                 Image {
                     id: control
                     property bool play: false
-                    source: "images/play.png"
+                    source: (play == false)?"images/play.png":"images/pause.png";
                 }
+                function startStream(){
+                    player.play();
+                    control.play = true
+                }
+                function stopStream(){
+                    player.stop();
+                    control.play = false
+                }
+                function pauseStream(){
+                    player.pause();
+                    control.play = false
+                }
+
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
                         if (!control.play){
-                            control.source = "images/pause.png"
-                            player.play();
+                            parent.startStream()
                         }
                         else{
-                            control.source = "images/play.png"
-                            player.stop();
+                            parent.pauseStream()
                         }
-                        control.play = !control.play
                     }
                 }
 

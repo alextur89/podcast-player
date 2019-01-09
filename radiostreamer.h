@@ -27,6 +27,7 @@ public:
 public slots:
     void play();
     void stop();
+    void pause();
 
 private:
     QMediaPlayer* player;
