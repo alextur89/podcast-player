@@ -47,3 +47,15 @@ void RadioStreamer::setVolume(int theVol){
 int RadioStreamer::getVolume(){
     return vol;
 }
+
+void RadioStreamer::setPosition(int thePos){
+    player->setPosition(thePos);
+}
+
+int RadioStreamer::getPosition(){
+    return player->position();
+}
+
+int RadioStreamer::getDuration(){
+    return player->duration();
+}

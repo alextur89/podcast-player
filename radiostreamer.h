@@ -23,6 +23,9 @@ public:
     QString getSource();
     Q_INVOKABLE void setVolume(int theVol);
     Q_INVOKABLE int getVolume();
+    Q_INVOKABLE void setPosition(int thePos);
+    Q_INVOKABLE int getPosition();
+    Q_INVOKABLE int getDuration();
 
 public slots:
     void play();

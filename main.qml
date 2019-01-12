@@ -95,6 +95,7 @@ ApplicationWindow {
         onCurrentIndexChanged: {
             statusBar.setEpisodeName(currentItem.getTitle())
             player.stop()
+            timeSlider.to = player.getDuration()
             player.source = currentItem.getLink()
 
         }
@@ -161,7 +162,19 @@ ApplicationWindow {
                     value: 0
                     to: 100
                     width: statusBar.width - playButton.width
+                    onValueChanged: player.setPosition(timeSlider.value)
                 }
+            }
+        }
+    }
+    Item {
+        Timer {
+            interval: 500;
+            running: true;
+            repeat: true
+            onTriggered: {
+                timeSlider.value = player.getPosition()
+                console.log(player.getPosition())
             }
         }
     }
