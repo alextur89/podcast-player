@@ -9,5 +9,6 @@
         <file>images/2_po_cene_1.jpg</file>
         <file>images/pause.png</file>
         <file>images/play.png</file>
+        <file>PodcastsDelegate.qml</file>
     </qresource>
 </RCC>

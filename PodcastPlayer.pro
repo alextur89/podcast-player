@@ -34,6 +34,8 @@ DISTFILES += \
     images/busy.png \
     PodcastFeeds.qml \
     images/tekst_nedeli.png \
-    images/meduza_v_kurse.jpg
+    images/meduza_v_kurse.jpg \
+    EpisodesDelegate.qml \
+    PodcastsDelegate.qml
 
 HEADERS +=
