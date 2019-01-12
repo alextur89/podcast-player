@@ -9,25 +9,21 @@ ApplicationWindow {
     id: mainWindow
     visible: true
     width: 800
-    height: 480
+    height: 600
     title: qsTr("Podcast Player")
     color: "whitesmoke"
 
+    //The MediaPlayer
+    MediaPlayer {
+        id: player
+        source: ""
+    }
+
+    PodcastFeeds {
+        id: feeds
+    }
     property string currentFeed: feeds.get(0).feed//current episode of the podcast
     property bool loading: feedModel.status === XmlListModel.Loading
-
-    PodcastFeeds { id: feeds }
-
-    //list model of rss
-    XmlListModel {
-        id: feedModel
-        source: "http://" + mainWindow.currentFeed
-        query: "/rss/channel/item"
-        namespaceDeclarations: "declare namespace itunes='http://www.itunes.com/dtds/podcast-1.0.dtd';"
-        XmlRole { name: "title"; query: "title/string()" }
-        XmlRole { name: "description"; query: "description/string()" }
-        XmlRole { name: "link"; query: "enclosure/@url/string()" }
-    }
 
     //list of podcasts
     ListView {
@@ -41,6 +37,17 @@ ApplicationWindow {
         model: feeds
         spacing: 3
         delegate: PodcastsDelegate{}
+    }
+
+    //list model of rss
+    XmlListModel {
+        id: feedModel
+        source: "http://" + mainWindow.currentFeed
+        query: "/rss/channel/item"
+        namespaceDeclarations: "declare namespace itunes='http://www.itunes.com/dtds/podcast-1.0.dtd';"
+        XmlRole { name: "title"; query: "title/string()" }
+        XmlRole { name: "description"; query: "description/string()" }
+        XmlRole { name: "link"; query: "enclosure/@url/string()" }
     }
 
     //list of the podcast's episodes
@@ -160,9 +167,5 @@ ApplicationWindow {
             } 
         }
     }
-    //The MediaPlayer
-    MediaPlayer {
-        id: player
-        source: ""
-    }
+
 }
