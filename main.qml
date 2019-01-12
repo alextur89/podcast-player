@@ -4,6 +4,7 @@ import QtQuick.Controls 2.4
 import QtQuick.XmlListModel 2.0
 import QtGraphicalEffects 1.12
 import Radio 1.0
+import QtMultimedia 5.9
 
 ApplicationWindow {
     id: mainWindow
@@ -95,7 +96,9 @@ ApplicationWindow {
         onCurrentIndexChanged: {
             statusBar.setEpisodeName(currentItem.getTitle())
             player.stop()
-            timeSlider.to = player.getDuration()
+            timeSlider.to = player.duration
+            timeSlider.from = 0
+            timeSlider.value = 0
             player.source = currentItem.getLink()
 
         }
@@ -162,7 +165,22 @@ ApplicationWindow {
                     value: 0
                     to: 100
                     width: statusBar.width - playButton.width
-                    onValueChanged: player.setPosition(timeSlider.value)
+                    //onMoved: player.seek(timeSlider.value - player.position)
+
+                    property bool sync: false
+                    onValueChanged: {
+                       if (!sync)
+                           player.seek(value)
+                    }
+
+                    Connections {
+                        target: player
+                        onPositionChanged: {
+                            timeSlider.sync = true
+                            timeSlider.value = player.position
+                            timeSlider.sync = false
+                        }
+                    }
                 }
             }
         }
@@ -173,13 +191,16 @@ ApplicationWindow {
             running: true;
             repeat: true
             onTriggered: {
-                timeSlider.value = player.getPosition()
-                console.log(player.getPosition())
+                //timeSlider.value = player.position
             }
         }
     }
-    Radio{
+    MediaPlayer {
         id: player
         source: "http://213.59.4.27:8000/silver128.mp3"
     }
+    /*Radio{
+        id: player
+        source: "http://213.59.4.27:8000/silver128.mp3"
+    }*/
 }
