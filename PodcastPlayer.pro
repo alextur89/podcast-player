@@ -31,7 +31,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    images/busy.png \
     PodcastFeeds.qml \
     images/tekst_nedeli.png \
     images/meduza_v_kurse.jpg \

@@ -13,11 +13,12 @@ ApplicationWindow {
     title: qsTr("Podcast Player")
     color: "whitesmoke"
 
-    property string currentFeed: feeds.get(0).feed
+    property string currentFeed: feeds.get(0).feed//current episode of the podcast
     property bool loading: feedModel.status === XmlListModel.Loading
 
     PodcastFeeds { id: feeds }
 
+    //list model of rss
     XmlListModel {
         id: feedModel
         source: "http://" + mainWindow.currentFeed
@@ -69,6 +70,8 @@ ApplicationWindow {
 
         }
     }
+
+    //Status bar in bottom
     Rectangle{
         id: statusBar
         color: "white"
@@ -157,6 +160,7 @@ ApplicationWindow {
             } 
         }
     }
+    //The MediaPlayer
     MediaPlayer {
         id: player
         source: ""
