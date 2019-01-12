@@ -164,7 +164,7 @@ ApplicationWindow {
                         from: 1
                         value: 0
                         to: 100
-                        width: statusBar.width - playButton.width// - durationText.width
+                        width: statusBar.width - playButton.width - durationText.width
 
                         property bool sync: false
                         onValueChanged: {
@@ -180,12 +180,12 @@ ApplicationWindow {
                             }
                         }
                     }
-                    /*Label {
+                    Label {
                         id: durationText
-                        readonly property int minutes: Math.floor(player.position / 60000)
-                        readonly property int seconds: Math.round((player.position % 60000) / 1000)
-                        text: Qt.formatTime(new Date(0, 0, 0, 0, minutes, seconds), qsTr("mm:ss"))
-                    }*/
+                        readonly property int minutes: Math.floor(timeSlider.value / 60000)
+                        readonly property int seconds: Math.round((timeSlider.value % 60000) / 1000)
+                        text: Qt.formatTime(new Date(2018, 1, 1, 1, minutes, seconds), qsTr("mm:ss"))
+                    }
                 }
             } 
         }
