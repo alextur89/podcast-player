@@ -136,7 +136,7 @@ ApplicationWindow {
                     Slider{
                         id: timeSlider
                         to: player.duration
-                        width: statusBar.width - playButton.width - durationText.width
+                        width: statusBar.width - playButton.width - durationText.width - volumeSlider.width - volumeText.width
 
                         property bool sync: false
                         onValueChanged: {
@@ -157,6 +157,22 @@ ApplicationWindow {
                         readonly property int minutes: Math.floor(timeSlider.value / 60000)
                         readonly property int seconds: Math.round((timeSlider.value % 60000) / 1000)
                         text: Qt.formatTime(new Date(2018, 1, 1, 1, minutes, seconds), qsTr("mm:ss"))
+                    }
+                    Slider{
+                        id: volumeSlider
+                        from: 0
+                        to: 100
+                        width: 100
+                        value: 100
+
+                        onValueChanged: {
+                               player.volume = value / 100
+                        }
+                    }
+                    Label {
+                        id: volumeText
+                        text: Math.floor(volumeSlider.value) + '%'
+
                     }
                 }
             } 
