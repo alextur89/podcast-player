@@ -10,7 +10,7 @@ ApplicationWindow {
     visible: true
     width: 800
     height: 600
-    title: qsTr("Podcast Player")
+    title: qsTr("Podcast Player v" + Qt.application.version)
     color: "whitesmoke"
 
     //The MediaPlayer
