@@ -9,5 +9,7 @@
         <file>images/pause.png</file>
         <file>images/play.png</file>
         <file>PodcastsDelegate.qml</file>
+        <file>images/seek_right.png</file>
+        <file>images/seek_left.png</file>
     </qresource>
 </RCC>

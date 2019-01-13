@@ -127,6 +127,45 @@ ApplicationWindow {
                 }
 
             }
+            Rectangle{
+                id: seekLeft
+                height: 48
+                width: 48
+                x:8
+                y:8
+                Image {
+                    id: sl
+                    source: "images/seek_left.png"
+                    height: 48
+                    width: 48
+                }
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        player.seek(player.position - 15000)
+                    }
+                }
+            }
+            Rectangle{
+                id: seekRight
+                height: 48
+                width: 48
+                x:8
+                y:8
+                Image {
+                    id: sr
+                    source: "images/seek_right.png"
+                    height: 48
+                    width: 48
+                }
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        player.seek(player.position + 15000)
+                    }
+                }
+            }
+
             Column{
                 Text{
                     id: episodeName
@@ -136,7 +175,7 @@ ApplicationWindow {
                     Slider{
                         id: timeSlider
                         to: player.duration
-                        width: statusBar.width - playButton.width - durationText.width - volumeSlider.width - volumeText.width
+                        width: statusBar.width - playButton.width - durationText.width - volumeSlider.width - volumeText.width - (seekLeft.width + seekRight.width)
 
                         property bool sync: false
                         onValueChanged: {
