@@ -69,12 +69,9 @@ ApplicationWindow {
         }
         onCurrentIndexChanged: {
             statusBar.setEpisodeName(currentItem.getTitle())
-            player.stop()
-            timeSlider.to = player.duration
-            timeSlider.from = 0
+            playButton.stopStream()
             timeSlider.value = 0
             player.source = currentItem.getLink()
-
         }
     }
 
@@ -138,9 +135,7 @@ ApplicationWindow {
                 Row{
                     Slider{
                         id: timeSlider
-                        from: 1
-                        value: 0
-                        to: 100
+                        to: player.duration
                         width: statusBar.width - playButton.width - durationText.width
 
                         property bool sync: false
