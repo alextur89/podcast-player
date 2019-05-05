@@ -1,16 +1,18 @@
-PodcastPlayer
-=============================
+# ![Podcast player logo](images/logo.png)
+Simple player for some podcasts. Written on qml (Qt).
 
-Реализация проигрывателя подкастов
-
-Платформы
+Screenshot
 ==========
+![Screenshot](images/Screenshot.png)
 
+Platform
+==========
 * Linux
 
-Сборка
+Build
 ======
+~~~
    qmake-qt5 PodcastPlayer.pro
    make
-
+~~~
 
