@@ -2,10 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>PodcastFeeds.qml</file>
-        <file>images/meduza_v_kurse.jpg</file>
-        <file>images/tekst_nedeli.png</file>
         <file>EpisodesDelegate.qml</file>
-        <file>images/2_po_cene_1.jpg</file>
         <file>images/pause.png</file>
         <file>images/play.png</file>
         <file>PodcastsDelegate.qml</file>
