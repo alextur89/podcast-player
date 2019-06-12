@@ -4,6 +4,7 @@ import QtQuick.Controls 2.4
 import QtQuick.XmlListModel 2.0
 import QtGraphicalEffects 1.12
 import QtMultimedia 5.9
+import com.podcastplayer.podcastsmodel 1.0
 
 ApplicationWindow {
     id: mainWindow
@@ -19,10 +20,15 @@ ApplicationWindow {
         source: ""
     }
 
-    PodcastFeeds {
+    /*PodcastFeeds {
         id: feeds
+    }*/
+    PodcastsModel{
+        id: feeds
+
     }
-    property string currentFeed: feeds.get(0).feed//current episode of the podcast
+
+    property string currentFeed: feeds.data(feeds.index(0,0))//feeds.get(0).feed//current episode of the podcast
     property bool loading: feedModel.status === XmlListModel.Loading
 
     //list of podcasts

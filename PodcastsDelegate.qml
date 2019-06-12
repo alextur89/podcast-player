@@ -15,7 +15,7 @@ Rectangle {
     //list model of rss
     XmlListModel {
         id: xmlmodel
-        source: "http://" +  feed
+        source: "http://" +  display
         query: "/rss/channel"
         namespaceDeclarations: "declare namespace itunes='http://www.itunes.com/dtds/podcast-1.0.dtd';"
         XmlRole { name: "image"; query: "image/url/string()"}
@@ -44,10 +44,10 @@ Rectangle {
         onClicked: {
             reloadLogos()
             parent.ListView.view.currentIndex = index
-            if (mainWindow.currentFeed == feed)
+            if (mainWindow.currentFeed == display)
                 feedModel.reload()
             else
-                mainWindow.currentFeed = feed
+                mainWindow.currentFeed = display
         }
 
     }
