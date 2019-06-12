@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
-    app.setApplicationVersion(QString("0.0.3"));
+    app.setApplicationVersion(QString("0.1.0"));
 
     qmlRegisterType<PodcastListSerialization>("com.podcastplayer.podcastsmodel", 1, 0, "PodcastsModel");
 
