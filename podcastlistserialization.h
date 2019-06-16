@@ -9,8 +9,8 @@ class PodcastListSerialization : public QStringListModel
 public:
     PodcastListSerialization();
     ~PodcastListSerialization();
-    void appendString(const QString& string);
-    void removeString(const QString& string);
+    Q_INVOKABLE void appendString(const QString& string);
+    Q_INVOKABLE void removeString(const QString& string);
     bool saveState();
     bool loadState();
 private:

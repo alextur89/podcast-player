@@ -5,6 +5,7 @@ import QtQuick.XmlListModel 2.0
 import QtGraphicalEffects 1.12
 import QtMultimedia 5.9
 import com.podcastplayer.podcastsmodel 1.0
+import QtQuick.Dialogs 1.2
 
 ApplicationWindow {
     id: mainWindow
@@ -79,6 +80,20 @@ ApplicationWindow {
             timeSlider.value = 0
             player.source = currentItem.getLink()
         }
+    }
+    RoundButton {
+        id: addRss
+        text: "+"
+        width: 50
+        height: 50
+        x: parent.width - addRss.width - 20
+        y: parent.height - addRss.height - statusBar.height - 20
+        onClicked: dialogAddRss.visible = true
+        background:
+            Rectangle {
+                radius: parent.radius
+                color: "orange"
+            }
     }
 
     //Status bar in bottom
@@ -221,6 +236,27 @@ ApplicationWindow {
                     }
                 }
             } 
+        }
+    }
+    Dialog {
+        id: dialogAddRss
+        visible: false
+        title: "Add RSS"
+
+        standardButtons: Dialog.Apply | Dialog.Cancel
+
+        TextInput{
+            id: newRss
+            color: "black"
+            text: "here"
+            cursorVisible: true
+            focus: true
+        }
+
+        onApply:
+        {
+            feeds.appendString(newRss.text)
+            visible = false
         }
     }
 

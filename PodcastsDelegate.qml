@@ -38,7 +38,6 @@ Rectangle {
         scale: selected ? 1.15 : 1.0
         Behavior on scale { PropertyAnimation { duration: 300 } }
     }
-
     MouseArea {
         anchors.fill: parent
         onClicked: {
