@@ -74,7 +74,6 @@ ApplicationWindow {
     }
     RoundButton {
         id: addRss
-        text: "+"
         width: 50
         height: 50
         x: parent.width - addRss.width - 20
@@ -83,7 +82,14 @@ ApplicationWindow {
         background:
             Rectangle {
                 radius: parent.radius
-                color: "orange"
+                color: "#ff5722"
+            }
+        contentItem: Text {
+                text: "+"
+                font.pointSize: 42
+                color: "white"
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
             }
     }
 
