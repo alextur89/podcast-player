@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>PodcastFeeds.qml</file>
         <file>EpisodesDelegate.qml</file>
         <file>images/pause.png</file>
         <file>images/play.png</file>

@@ -11,12 +11,7 @@ PodcastListSerialization::PodcastListSerialization()
     QStringList initList;
     initList << "meduza.io/rss/podcasts/meduza-v-kurse"
              << "meduza.io/rss/podcasts/tekst-nedeli"
-             << "meduza.io/rss/podcasts/dva-po-tsene-odnogo"
-             << "meduza.io/rss/podcasts/peremotka"
-             << "meduza.io/rss/podcasts/sperva-rodi"
-             << "echo.msk.ru/programs/personalno/rss-audio.xml"
-             << "podster.fm/rss.xml?pid=48999"
-             << "rss.simplecast.com/podcasts/2131/rss";
+             << "meduza.io/rss/podcasts/dva-po-tsene-odnogo";
     if (loadState() == false){
         m_model->setStringList(initList);
     }
