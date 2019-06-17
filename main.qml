@@ -4,7 +4,6 @@ import QtQuick.Controls 2.4
 import QtQuick.XmlListModel 2.0
 import QtGraphicalEffects 1.12
 import QtMultimedia 5.9
-import com.podcastplayer.podcastsmodel 1.0
 import QtQuick.Dialogs 1.2
 
 ApplicationWindow {
@@ -21,15 +20,7 @@ ApplicationWindow {
         source: ""
     }
 
-    /*PodcastFeeds {
-        id: feeds
-    }*/
-    PodcastsModel{
-        id: feeds
-
-    }
-
-    property string currentFeed: feeds.data(feeds.index(0,0))//feeds.get(0).feed//current episode of the podcast
+    property string currentFeed: podcastmodel.data(podcastmodel.index(0, 0))
     property bool loading: feedModel.status === XmlListModel.Loading
 
     //list of podcasts
@@ -41,7 +32,7 @@ ApplicationWindow {
         height: parent.height - statusBar.height
         orientation: ListView.Vertical
         anchors.top: parent.top
-        model: feeds
+        model: podcastmodel
         spacing: 3
         delegate: PodcastsDelegate{}
     }

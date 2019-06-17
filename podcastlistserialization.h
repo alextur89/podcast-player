@@ -4,8 +4,9 @@
 #include <QStringListModel>
 #include <QStringList>
 
-class PodcastListSerialization : public QStringListModel
+class PodcastListSerialization : public QObject
 {
+    Q_OBJECT
 public:
     PodcastListSerialization();
     ~PodcastListSerialization();
@@ -13,7 +14,11 @@ public:
     Q_INVOKABLE void removeString(const QString& string);
     bool saveState();
     bool loadState();
+    Q_INVOKABLE QStringListModel* getModel(){
+        return m_model;
+    }
 private:
+    QStringListModel* m_model;
 };
 
 #endif // PODCASTLISTSERIALIZATION_H
