@@ -239,13 +239,19 @@ ApplicationWindow {
         TextInput{
             id: newRss
             color: "black"
-            text: "here"
+            text: currentFeed
             cursorVisible: true
             focus: true
         }
 
         onApply:
         {
+            if (newRss.text.slice(0,7) == "http://"){
+                newRss.text = newRss.text.slice(7,newRss.text.length)
+            }
+            else if (newRss.text.slice(0,11) == "http://www."){
+                newRss.text = newRss.text.slice(11,newRss.text.length)
+            }
             feeds.appendString(newRss.text)
             visible = false
         }
