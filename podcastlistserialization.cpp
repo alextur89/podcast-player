@@ -7,6 +7,7 @@
 
 PodcastListSerialization::PodcastListSerialization()
 {
+    m_model = new QStringListModel(this);
     QStringList initList;
     initList << "meduza.io/rss/podcasts/meduza-v-kurse"
              << "meduza.io/rss/podcasts/tekst-nedeli"
@@ -17,7 +18,7 @@ PodcastListSerialization::PodcastListSerialization()
              << "podster.fm/rss.xml?pid=48999"
              << "rss.simplecast.com/podcasts/2131/rss";
     if (loadState() == false){
-        this->setStringList(initList);
+        m_model->setStringList(initList);
     }
 }
 
@@ -27,15 +28,15 @@ PodcastListSerialization::~PodcastListSerialization()
 }
 
 void PodcastListSerialization::appendString(const QString &string){
-    auto ts = this->stringList();
+    auto ts = m_model->stringList();
     ts.append(string);
-    this->setStringList(ts);
+    m_model->setStringList(ts);
 }
 
 void PodcastListSerialization::removeString(const QString &string){
-    auto ts = this->stringList();
+    auto ts = m_model->stringList();
     ts.removeAll(string);
-    this->setStringList(ts);
+    m_model->setStringList(ts);
 }
 
 bool PodcastListSerialization::saveState()
@@ -46,7 +47,7 @@ bool PodcastListSerialization::saveState()
     if (file.open(QIODevice::WriteOnly)){
         QJsonObject obj;
         QJsonArray rssArr;
-        for (auto& sl: stringList()){
+        for (auto& sl: m_model->stringList()){
             QJsonValue jv;
             jv = sl;
             rssArr.append(jv);
@@ -77,7 +78,7 @@ bool PodcastListSerialization::loadState()
         for (auto r: rss){
             fromJson.append(r.toString());
         }
-        this->setStringList(fromJson);
+        m_model->setStringList(fromJson);
         ret = true;
     }
     file.close();

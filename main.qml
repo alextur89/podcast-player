@@ -4,7 +4,7 @@ import QtQuick.Controls 2.4
 import QtQuick.XmlListModel 2.0
 import QtGraphicalEffects 1.12
 import QtMultimedia 5.9
-import com.podcastplayer.podcastsmodel 1.0
+import QtQuick.Dialogs 1.2
 
 ApplicationWindow {
     id: mainWindow
@@ -20,15 +20,7 @@ ApplicationWindow {
         source: ""
     }
 
-    /*PodcastFeeds {
-        id: feeds
-    }*/
-    PodcastsModel{
-        id: feeds
-
-    }
-
-    property string currentFeed: feeds.data(feeds.index(0,0))//feeds.get(0).feed//current episode of the podcast
+    property string currentFeed: podcastmodel.data(podcastmodel.index(0, 0))
     property bool loading: feedModel.status === XmlListModel.Loading
 
     //list of podcasts
@@ -40,7 +32,7 @@ ApplicationWindow {
         height: parent.height - statusBar.height
         orientation: ListView.Vertical
         anchors.top: parent.top
-        model: feeds
+        model: podcastmodel
         spacing: 3
         delegate: PodcastsDelegate{}
     }
@@ -79,6 +71,26 @@ ApplicationWindow {
             timeSlider.value = 0
             player.source = currentItem.getLink()
         }
+    }
+    RoundButton {
+        id: addRss
+        width: 50
+        height: 50
+        x: parent.width - addRss.width - 20
+        y: parent.height - addRss.height - statusBar.height - 20
+        onClicked: dialogAddRss.visible = true
+        background:
+            Rectangle {
+                radius: parent.radius
+                color: "#ff5722"
+            }
+        contentItem: Text {
+                text: "+"
+                font.pointSize: 42
+                color: "white"
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
     }
 
     //Status bar in bottom
@@ -221,6 +233,33 @@ ApplicationWindow {
                     }
                 }
             } 
+        }
+    }
+    Dialog {
+        id: dialogAddRss
+        visible: false
+        title: "Add RSS"
+
+        standardButtons: Dialog.Apply | Dialog.Cancel
+
+        TextInput{
+            id: newRss
+            color: "black"
+            text: currentFeed
+            cursorVisible: true
+            focus: true
+        }
+
+        onApply:
+        {
+            if (newRss.text.slice(0,7) == "http://"){
+                newRss.text = newRss.text.slice(7,newRss.text.length)
+            }
+            else if (newRss.text.slice(0,8) == "https://"){
+                newRss.text = newRss.text.slice(8,newRss.text.length)
+            }
+            feeds.appendString(newRss.text)
+            visible = false
         }
     }
 

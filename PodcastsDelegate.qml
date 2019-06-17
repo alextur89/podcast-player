@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.4
 import QtQuick.XmlListModel 2.0
+import QtQuick.Dialogs 1.2
 
 
 Rectangle {
@@ -38,7 +39,6 @@ Rectangle {
         scale: selected ? 1.15 : 1.0
         Behavior on scale { PropertyAnimation { duration: 300 } }
     }
-
     MouseArea {
         anchors.fill: parent
         onClicked: {
@@ -48,6 +48,9 @@ Rectangle {
                 feedModel.reload()
             else
                 mainWindow.currentFeed = display
+        }
+        onPressAndHold: {
+            dialogRemove.visible = true
         }
 
     }
@@ -61,6 +64,26 @@ Rectangle {
 
     function reloadLogos(){
         logo.source = getImage()
+    }
+
+    Dialog {
+        id: dialogRemove
+        visible: false
+        title: "Remove RSS"
+
+        standardButtons: Dialog.Apply | Dialog.Cancel
+
+        Text{
+            color: "black"
+            text: "Are you sure to remove the RSS?"
+        }
+
+        onApply:
+        {
+            var str = xmlmodel.source.toString();
+            feeds.removeString(str.slice(8))
+            visible = false
+        }
     }
 
 }
