@@ -101,6 +101,9 @@ ApplicationWindow {
         width: mainWindow.width
         y: parent.height - 64
         function setEpisodeName(name){
+            if (name.slice(0,1) === '\n'){
+                name = name.slice(1,name.length)
+            }
             episodeName.text = name;
         }
 
@@ -188,6 +191,9 @@ ApplicationWindow {
                 Text{
                     id: episodeName
                     text: "Пусто"
+                    y: 0
+                    x: 0
+                    height: 20
                 }
                 Row{
                     Slider{

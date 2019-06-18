@@ -3,7 +3,7 @@ import QtQuick 2.0
 Component{
     Item{
         id: delegate
-        height: 50
+        height: 80
         width: ListView.view.width
         signal indexChanged()
 
@@ -21,7 +21,7 @@ Component{
                 text: title
                 width: delegate.width
                 wrapMode: Text.WordWrap
-                font.pixelSize: 16
+                font.pixelSize: 14
                 font.bold: true
             }
         }
