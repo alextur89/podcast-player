@@ -12,6 +12,7 @@ Rectangle {
 
     property bool selected: ListView.isCurrentItem
     property real itemSize
+    property string url: display
 
     //list model of rss
     XmlListModel {
@@ -80,8 +81,7 @@ Rectangle {
 
         onApply:
         {
-            var str = xmlmodel.source.toString();
-            feeds.removeString(str.slice(8))
+            feeds.removeString(url)
             visible = false
         }
     }
