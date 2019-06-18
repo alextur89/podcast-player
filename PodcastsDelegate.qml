@@ -39,6 +39,11 @@ Rectangle {
         width: 120
         scale: selected ? 1.15 : 1.0
         Behavior on scale { PropertyAnimation { duration: 300 } }
+        onStatusChanged: {
+            if (status == Image.Error){
+                source =  "images/unknown.png"
+            }
+        }
     }
     MouseArea {
         anchors.fill: parent
