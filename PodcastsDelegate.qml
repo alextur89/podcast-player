@@ -13,6 +13,7 @@ Rectangle {
     property bool selected: ListView.isCurrentItem
     property real itemSize
     property string url: display
+    property string defimage : "images/unknown.png"
 
     //list model of rss
     XmlListModel {
@@ -29,19 +30,25 @@ Rectangle {
 
 
     function getImage(){
-        return xmlmodel.get(0).image
+        var urlstr = xmlmodel.get(0).image
+        if (urlstr === ""){
+            urlstr = defimage
+        }
+
+        return urlstr
     }
 
     Image {
         id: logo
         anchors.left: parent.left
+        source: defimage
         height: 120
         width: 120
         scale: selected ? 1.15 : 1.0
         Behavior on scale { PropertyAnimation { duration: 300 } }
         onStatusChanged: {
             if (status == Image.Error){
-                source =  "images/unknown.png"
+                source =  defimage
             }
         }
     }
