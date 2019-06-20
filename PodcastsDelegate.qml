@@ -88,7 +88,7 @@ Rectangle {
 
         Text{
             color: "black"
-            text: "Are you sure to remove the RSS?"
+            text: "Are you sure to remove the RSS feed?"
         }
 
         onApply:

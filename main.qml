@@ -244,13 +244,15 @@ ApplicationWindow {
     Dialog {
         id: dialogAddRss
         visible: false
+        width: mainWindow.width - 300
         title: "Add RSS"
 
         standardButtons: Dialog.Apply | Dialog.Cancel
 
-        TextInput{
+        TextField{
             id: newRss
             color: "black"
+            anchors.fill: parent
             text: currentFeed
             cursorVisible: true
             focus: true
