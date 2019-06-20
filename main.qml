@@ -72,27 +72,27 @@ ApplicationWindow {
             player.source = currentItem.getLink()
         }
     }
-    RoundButton {
+
+    Rectangle{
         id: addRss
-        width: 50
-        height: 50
+        height: 64
+        width: 64
         x: parent.width - addRss.width - 20
         y: parent.height - addRss.height - statusBar.height - 20
-        onClicked: dialogAddRss.visible = true
-        background:
-            Rectangle {
-                radius: parent.radius
-                color: "#ff5722"
+        color: "transparent"
+        Image {
+            id: pi
+            source: "images/plus.png"
+            height: 64
+            width: 64
+        }
+        MouseArea{
+            anchors.fill: parent
+            onClicked: {
+                dialogAddRss.visible = true
             }
-        contentItem: Text {
-                text: "+"
-                font.pointSize: 42
-                color: "white"
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-            }
+        }
     }
-
     //Status bar in bottom
     Rectangle{
         id: statusBar

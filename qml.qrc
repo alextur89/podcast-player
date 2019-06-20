@@ -8,5 +8,6 @@
         <file>images/seek_right.png</file>
         <file>images/seek_left.png</file>
         <file>images/unknown.png</file>
+        <file>images/plus.png</file>
     </qresource>
 </RCC>
